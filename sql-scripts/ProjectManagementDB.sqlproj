@@ -1,0 +1,36 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- SQL Server Database Project Settings -->
+  <PropertyGroup>
+    <ProjectType>Database</ProjectType>
+    <TargetFramework>SQLServer</TargetFramework>
+    <SQLServerVersion>SQLServer2019</SQLServerVersion>
+    <OutputPath>$(SolutionDir)\bin\$(Configuration)\</OutputPath>
+    <DeployTarget>SQLAzure</DeployTarget>
+    <DeployScriptName>Deploy-SQLScript.sql</DeployScriptName>
+  </PropertyGroup>
+
+  <!-- Define items for the SQL scripts included in the project -->
+  <ItemGroup>
+    <!-- Include the main SQL script that creates the table -->
+    <None Include="ProjectStatusTable.sql">
+      <DeployToDatabase>True</DeployToDatabase>
+    </None>
+    
+    <!-- Include post-deployment script -->
+    <None Include="ScriptPostDeployment.sql">
+      <DeployToDatabase>True</DeployToDatabase>
+    </None>
+  </ItemGroup>
+
+  <!-- Build Events: When the project is built -->
+  <Target Name="AfterBuild">
+    <!-- Here you can define tasks that happen after build (e.g., deploy or copy files) -->
+  </Target>
+</Project>
+
+
+
+# How to Use:
+# SQL Server Database Project: You will use this project file to create a SQL database project within Visual Studio. The project will include SQL scripts for schema creation (ProjectStatusTable.sql), post-deployment actions (ScriptPostDeployment.sql), and any other necessary SQL objects (views, stored procedures, etc.).
+# Build & Deploy: When you build this project, Visual Studio will generate deployment scripts (such as Deploy-SQLScript.sql) which can be executed to deploy the database schema and the necessary changes to a SQL Server instance or Azure SQL Database.
+# Customization: You can add additional SQL scripts, references to other database projects, or modify the AfterBuild event to automate deployment or other actions.
