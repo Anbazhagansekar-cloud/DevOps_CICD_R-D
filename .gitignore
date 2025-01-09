@@ -1,0 +1,17 @@
+# Ignore PowerShell session history
+*.ps1xml
+
+# Ignore Azure authentication files
+*.azureauth
+
+# Ignore build directories
+node_modules/
+.vscode/
+.idea/
+
+# Ignore YAML build files (optional)
+# *.yml
+
+# Ignore generated files
+.DS_Store
+*.log
